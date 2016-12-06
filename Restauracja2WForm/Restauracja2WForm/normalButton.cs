@@ -42,7 +42,10 @@ namespace Restauracja2WForm
                 TextFormatFlags.HorizontalCenter | 
                 TextFormatFlags.VerticalCenter;
             TextRenderer.DrawText(g, Text, new Font("Arial", 8), rectName, Color.Black, flags);
-            
+            if (this.Image != null)
+            {
+                g.DrawImage(this.Image, 3, 3);
+            }
         }
 
     }

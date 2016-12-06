@@ -8,14 +8,4 @@ c:\users\server\documents\visual studio 2015\Projects\Restauracja2WForm\Restaura
 c:\users\server\documents\visual studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.exe
 c:\users\server\documents\visual studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.pdb
 C:\Users\Server\documents\visual studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.orderContent.resources
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\bin\Debug\Restauracja2WForm.exe.config
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.exe
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.pdb
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\bin\Debug\Restauracja2WForm.exe
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\bin\Debug\Restauracja2WForm.pdb
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.csprojResolveAssemblyReference.cache
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.Form1.resources
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.Properties.Resources.resources
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.orderContent.resources
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.csproj.GenerateResource.Cache
-C:\Users\local\Desktop\Restauracja2WForm\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.drawOrderContent.resources
+C:\Users\Server\documents\visual studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.ChangeIngredient.resources

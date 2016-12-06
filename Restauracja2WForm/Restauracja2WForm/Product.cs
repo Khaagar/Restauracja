@@ -18,7 +18,7 @@ namespace Restauracja2WForm
         private string id;
         private string name;
         private string price;
-        private List<string> ingredients = null;
+        private List<string> ingredients = new List<string>();
 
         //constructors
         public Product(string category, string color, string id, string name, string price, List<string> ingredients)
@@ -28,7 +28,11 @@ namespace Restauracja2WForm
             this.id = id;
             this.name = name;
             this.price = price;
-            this.ingredients = ingredients;
+            foreach (string ingredient in ingredients)
+            {
+                this.ingredients.Add(ingredient);
+            }
+            
         }
 
 

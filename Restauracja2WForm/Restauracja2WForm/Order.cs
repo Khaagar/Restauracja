@@ -14,10 +14,6 @@ namespace Restauracja2WForm
         private double cost=0;
         private bool isRealized=false;
 
-        public Order()
-        {
-
-        }
         public void addNewProduct(Product produkt)
         {
             this.orderedProducts.Add(produkt);
@@ -26,10 +22,11 @@ namespace Restauracja2WForm
            
         }
 
-        public void removeProductFromOrder(int i)
+        public void removeProductFromOrder(string name)
         {
-            this.cost -= Convert.ToDouble(orderedProducts.ElementAt(i).getPrice);
-            this.orderedProducts.RemoveAt(i);
+            Product productToRemove = orderedProducts.Find(x => x.getName == name);
+            this.cost -= Convert.ToDouble(productToRemove.getPrice);
+            this.orderedProducts.Remove(productToRemove);
 
             
         }

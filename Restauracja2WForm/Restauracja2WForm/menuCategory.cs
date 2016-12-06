@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Restauracja2WForm
 {
@@ -74,7 +75,7 @@ namespace Restauracja2WForm
                             if (tmpCounter == 3) id = tmpString;
                             if (tmpCounter == 4) name = tmpString;
                             if (tmpCounter == 5) price = tmpString;
-                            if (tmpCounter > 6)
+                            if (tmpCounter > 5)
                             {
                                 ingredients.Add(tmpString);
                             }
@@ -86,8 +87,10 @@ namespace Restauracja2WForm
                     tmpCounter = 0;
                 if (category == categoryM)
                 {
+                    
                     tmpProduct = new Product(category, color, id, name, price, ingredients);
                     this.lifOfCategoryContent.Add(tmpProduct);
+                    
                 }
                 ingredients.Clear();
 

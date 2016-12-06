@@ -28,10 +28,11 @@ namespace Restauracja2WForm
 
         private void lokalButton_Click(object sender, EventArgs e)
         {
-            drawOrderContent nowy = new drawOrderContent();
+            orderContent nowy = new orderContent();
             newOrder = new Order();
             drawMenuCategory menu = new drawMenuCategory();
             menu.addCategoriesToPanel(panel2,newOrder);
+            menu.addTreeViewToPanel(panel4);
             
         }
 

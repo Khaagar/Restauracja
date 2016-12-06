@@ -14,8 +14,9 @@ namespace Restauracja2WForm
         private string id = null;
         private string name = null;
         private string price = null;
+        private List<string> ingredients = null;
         private string typeOfButton = null;
-        Color color = new Color();
+        private Color color = new Color();
 
         //konstruktory
         public menuButton(Product product)
@@ -31,6 +32,8 @@ namespace Restauracja2WForm
             this.name = product.getName.ToUpper();
 
             this.price = Convert.ToString(product.getPrice) + " PLN";
+
+            this.ingredients = product.getIngredients;
 
             this.typeOfButton = product.getCategory;
             this.product = product;
@@ -73,13 +76,23 @@ namespace Restauracja2WForm
             set { typeOfButton = value; Invalidate(); }
         }
 
+        public List<string> getIngredients
+        {
+            get { return ingredients; }
+            set { ingredients = value; Invalidate(); }
+        }
+
         public Product getProduct
         {
             get { return product; }
             set {product = value; Invalidate(); }
         }
 
-
+        public Color getColor
+        {
+            get { return color; }
+            set { color = value; Invalidate(); }
+        }
 
 
         protected override void OnPaint(PaintEventArgs e)

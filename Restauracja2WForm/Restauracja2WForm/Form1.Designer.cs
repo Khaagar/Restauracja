@@ -30,13 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.normalButton4 = new Restauracja2WForm.normalButton();
             this.dowozButton = new Restauracja2WForm.normalButton();
             this.wynosButton = new Restauracja2WForm.normalButton();
             this.lokalButton = new Restauracja2WForm.normalButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +53,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 600);
             this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Location = new System.Drawing.Point(218, 99);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(600, 600);
+            this.panel2.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Restauracja2WForm.Properties.Resources._1423270772;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 80);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(218, 12);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(600, 80);
+            this.panel3.TabIndex = 2;
             // 
             // normalButton4
             // 
@@ -92,29 +117,12 @@
             this.lokalButton.UseVisualStyleBackColor = true;
             this.lokalButton.Click += new System.EventHandler(this.lokalButton_Click);
             // 
-            // panel2
+            // panel4
             // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.Location = new System.Drawing.Point(218, 99);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(778, 600);
-            this.panel2.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Restauracja2WForm.Properties.Resources._1423270772;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 80);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel3
-            // 
-            this.panel3.Location = new System.Drawing.Point(218, 12);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(600, 80);
-            this.panel3.TabIndex = 2;
+            this.panel4.Location = new System.Drawing.Point(820, 100);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(180, 600);
+            this.panel4.TabIndex = 3;
             // 
             // Form1
             // 
@@ -122,6 +130,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1008, 730);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);
@@ -150,6 +159,7 @@
         private System.Windows.Forms.GroupBox takeawayForm;
         private System.Windows.Forms.GroupBox actualOrder;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
     }
 }
 
