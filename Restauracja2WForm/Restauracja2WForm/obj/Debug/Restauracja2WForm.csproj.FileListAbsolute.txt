@@ -9,3 +9,4 @@ c:\users\server\documents\visual studio 2015\Projects\Restauracja2WForm\Restaura
 c:\users\server\documents\visual studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.pdb
 C:\Users\Server\documents\visual studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.orderContent.resources
 C:\Users\Server\documents\visual studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.ChangeIngredient.resources
+C:\Users\Server\documents\visual studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.DeliveryForm.resources

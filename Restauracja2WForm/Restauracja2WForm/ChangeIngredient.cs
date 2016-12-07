@@ -13,7 +13,7 @@ namespace Restauracja2WForm
     public partial class ChangeIngredient : Form
     {
         private Product input;
-        private bool status = false;
+        private bool status;
         private List<menuButton> buttons = new List<menuButton>();
 
         public ChangeIngredient(Product input)
@@ -51,7 +51,7 @@ namespace Restauracja2WForm
             menuButton b = sender as menuButton;
             if (b.getColor != Color.OrangeRed)
             {
-                input.getIngredients.Remove(b.getName);
+                input.getIngredients.Remove(input.getIngredients.Find(x => x.ToUpper()==b.getName));
                 b.getColor = Color.OrangeRed;
             }
             else

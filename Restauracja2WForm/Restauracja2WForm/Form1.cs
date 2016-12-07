@@ -22,13 +22,24 @@ namespace Restauracja2WForm
         private void dowozButton_Click(object sender, EventArgs e)
         {
             
-           
+            DeliveryForm newDelivery = new DeliveryForm();
+            newDelivery.ShowDialog();
+            if (newDelivery.getDelivery != null)
+            {
+                panel1.Visible = false;
+                newOrder = null;
+                newOrder = new Order();
+                drawMenuCategory menu = new drawMenuCategory();
+                menu.addCategoriesToPanel(panel2, newOrder);
+                menu.addTreeViewToPanel(panel4);
+            }
             
         }
 
         private void lokalButton_Click(object sender, EventArgs e)
         {
-            orderContent nowy = new orderContent();
+            panel1.Visible = false;
+            newOrder = null;
             newOrder = new Order();
             drawMenuCategory menu = new drawMenuCategory();
             menu.addCategoriesToPanel(panel2,newOrder);

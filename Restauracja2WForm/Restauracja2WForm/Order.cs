@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Restauracja2WForm
 {
-    class Order
+    public class Order
     {
         
         private List<Product> orderedProducts = new List<Product>();

@@ -144,26 +144,6 @@ namespace Restauracja2WForm
             deleteButton.Click += DeleteButton_Click;
             position.X += 40;
 
-            Button minusButton = new Button();
-            Image minus = Image.FromFile(@"../../minus_image.png");
-            minusButton.Image = minus;
-            minusButton.Width = 40;
-            minusButton.Height = 40;
-            minusButton.Location = position;
-            minusButton.Click += MinusButton_Click;
-            position.X += 40;
-            
-
-            Button plusButton = new Button();
-            Image plus = Image.FromFile(@"../../plus_image.png");
-            plusButton.Image = plus;
-            plusButton.Width = 40;
-            plusButton.Height = 40;
-            plusButton.Location = position;
-            plusButton.Click += PlusButton_Click;
-            position.X += 40;
-            
-
             Button changeButton = new Button();
             Image change = Image.FromFile(@"../../change_image.png");
             changeButton.Image = change;
@@ -182,8 +162,6 @@ namespace Restauracja2WForm
             totalAmountOfOrder.Text = "SUMA: " + Convert.ToString(order.getCostOfOrder)+" PLN";
             totalAmountOfOrder.Name = "totalAmountOfOrder";
             panel.Controls.Add(deleteButton);
-            panel.Controls.Add(minusButton);
-            panel.Controls.Add(plusButton);
             panel.Controls.Add(changeButton);
             panel.Controls.Add(orderTree);
             panel.Controls.Add(totalAmountOfOrder);
@@ -192,40 +170,30 @@ namespace Restauracja2WForm
         }
         #endregion
 
-        private void PlusButton_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void ChangeButton_Click(object sender, EventArgs e)
         {
-            Product selectedProduct = order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text));
-            ChangeIngredient Change = new ChangeIngredient(selectedProduct);
-            Change.Visible = true;
-            while (Change.Visible != true)
-            {
-
-            }
-            if (Change.getStatus == true)
-            {
-                
-                order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text)).getIngredients = Change.getInput.getIngredients;
-                orderTree.SelectedNode.Remove();
-                updateTreeView(Change.getInput.getName, Change.getInput.getPrice, Change.getInput.getIngredients);
-            }
-            
-        }
-
-        private void MinusButton_Click(object sender, EventArgs e)
-        {
             try
             {
+                Product selectedProduct = order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text));
+                if (selectedProduct.getIngredients.Count == 0)
+                {
+                    throw new ArgumentException();
+                }
+                ChangeIngredient Change = new ChangeIngredient(selectedProduct);
+                Change.ShowDialog();
+
+                order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text)).getIngredients = Change.getInput.getIngredients;
                 orderTree.SelectedNode.Remove();
-                orderTree.SelectedNode = null;
+                updateTreeView(Change.getInput.getName.ToUpper(), Change.getInput.getPrice, Change.getInput.getIngredients);
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("Nie zaznaczono żadnego składnika. Nie mam co usunąć");
+                MessageBox.Show("Nie zaznaczono żadnej pizzy!");
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("Nie można zmienić składników produktu. Musi być zaznaczona pizza.");
             }
         }
 
@@ -233,9 +201,11 @@ namespace Restauracja2WForm
         {
             try
             {
-                
+                order.getCostOfOrder = order.getCostOfOrder - Convert.ToDouble(order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text)).getPrice);
+                this.panelOrder.Controls.Find("totalAmountOfOrder", false).Last().Text = "SUMA: " + Convert.ToString(order.getCostOfOrder) + " PLN";
                 orderTree.SelectedNode.Remove();
                 orderTree.SelectedNode = null;
+                
             }
             catch (NullReferenceException )
             {
@@ -254,7 +224,7 @@ namespace Restauracja2WForm
             foreach (string ingredient in ingredients)
             {
                     node.Nodes.Add(productName, ingredient.ToUpper());
-                
+                    
             }
             
         }
