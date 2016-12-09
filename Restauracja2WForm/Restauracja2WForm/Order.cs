@@ -9,7 +9,7 @@ namespace Restauracja2WForm
 {
     public class Order
     {
-        
+        private DeliveryInfo delivery = null;
         private List<Product> orderedProducts = new List<Product>();
         private double cost=0;
         private bool isRealized=false;
@@ -31,12 +31,13 @@ namespace Restauracja2WForm
             
         }
 
-        public void editProductIngredients(int i)
+
+        public DeliveryInfo getDelivery
         {
-            List<string> ingredients = orderedProducts.ElementAt(i).getIngredients;
-            
-            
+            get { return delivery; }
+            set { delivery = value; }
         }
+
 
         public List<Product> getListOfOrderedProducts
         {

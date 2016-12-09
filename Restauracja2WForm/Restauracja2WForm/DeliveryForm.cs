@@ -18,6 +18,15 @@ namespace Restauracja2WForm
             InitializeComponent();
         }
 
+        public DeliveryForm(DeliveryInfo delivery)
+        {
+            textBox1.Text = delivery.getPhoneNumber;
+            textBox2.Text = delivery.getStreet;
+            textBox3.Text = delivery.getStreetNumber;
+            textBox4.Text = delivery.getFlatNumber;
+            textBox5.Text = delivery.getAdditionalInformation;
+        }
+
         private void DeliveryForm_Load(object sender, EventArgs e)
         {
             
@@ -30,8 +39,23 @@ namespace Restauracja2WForm
 
         private void normalButton1_Click(object sender, EventArgs e)
         {
-            delivery = new DeliveryInfo(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
-            Close();
+
+            try
+            {
+                
+                var checkedButton = this.Controls.OfType<RadioButton>()
+                                                      .FirstOrDefault(r => r.Checked);
+                delivery = new DeliveryInfo(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, checkedButton.Text);
+                if (delivery.getPhoneNumber == null) throw new ArgumentNullException();
+                if (delivery.getStreet == null) throw new ArgumentNullException();
+                if (delivery.getPayForm == null) throw new ArgumentNullException();
+                Close();
+            }
+            catch
+            {
+                MessageBox.Show("Wprowadź wymagane dane! ");
+            }
+            
         }
         public DeliveryInfo getDelivery
         {

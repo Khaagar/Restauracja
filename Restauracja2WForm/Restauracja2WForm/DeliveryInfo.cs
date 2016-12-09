@@ -13,42 +13,44 @@ namespace Restauracja2WForm
         private string streetNumber;
         private string flatNumber;
         private string additionalInformations;
+        private string payForm;
         private Order order;
 
-        public DeliveryInfo(string phoneNumber,string street, string streetNumber, string flatNumber, string additionalInformations)
+        public DeliveryInfo(string phoneNumber,string street, string streetNumber, string flatNumber, string additionalInformations, string payForm)
         {
             this.phoneNumber = phoneNumber;
             this.street = street;
             this.streetNumber = streetNumber;
             this.flatNumber = flatNumber;
             this.additionalInformations = additionalInformations;
+            this.payForm = payForm;
         }
 
-        private string getPhoneNumber
+        public string getPhoneNumber
         {
             get { return phoneNumber; }
             set { phoneNumber = value; }
         }
 
-        private string getStreet
+        public string getStreet
         {
             get { return street; }
             set { street = value; }
         }
 
-        private string getStreetNumber
+        public string getStreetNumber
         {
             get { return streetNumber; }
             set { streetNumber = value; }
         }
 
-        private string getFlatNumber
+        public string getFlatNumber
         {
             get { return flatNumber; }
             set { flatNumber = value; }
         }
 
-        private string getAdditionalInformation
+        public string getAdditionalInformation
                 {
                     get { return additionalInformations; }
                     set { additionalInformations = value; }
@@ -57,6 +59,12 @@ namespace Restauracja2WForm
         {
             get { return order; }
             set { order = value; }
+        }
+
+        public string getPayForm
+        {
+            get { return payForm; }
+            set { payForm = value; }
         }
 
 

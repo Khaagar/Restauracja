@@ -74,6 +74,7 @@ namespace Restauracja2WForm
             this.panelMenu = panel;
             this.order = order;
             panel.Controls.Clear();
+            Button endOfTheOrder = new normalButton();
             Point position = new Point(5, 0);
             this.getListOfMenuButtons();
             foreach (menuButton button in buttons)
@@ -88,6 +89,17 @@ namespace Restauracja2WForm
                 }
 
             }
+            position.X = 0;
+            position.Y = 520;
+            endOfTheOrder.Text = "KONIEC EDYCJI ZAMÓWIENIA";
+            endOfTheOrder.Location = position;
+            endOfTheOrder.Click += EndOfTheOrder_Click;
+            panel.Controls.Add(endOfTheOrder);
+        }
+
+        private void EndOfTheOrder_Click(object sender, EventArgs e)
+        {
+            
         }
         #endregion
 
