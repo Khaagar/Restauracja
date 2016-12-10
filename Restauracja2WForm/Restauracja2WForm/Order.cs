@@ -9,6 +9,7 @@ namespace Restauracja2WForm
 {
     public class Order
     {
+        private string typeOfOrder = null;
         private DeliveryInfo delivery = null;
         private List<Product> orderedProducts = new List<Product>();
         private double cost=0;
@@ -38,6 +39,11 @@ namespace Restauracja2WForm
             set { delivery = value; }
         }
 
+        public string getTypeOfOrder
+        {
+            get { return typeOfOrder; }
+            set { typeOfOrder = value; }
+        }
 
         public List<Product> getListOfOrderedProducts
         {

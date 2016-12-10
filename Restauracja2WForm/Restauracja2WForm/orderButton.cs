@@ -8,55 +8,45 @@ using System.Windows.Forms;
 
 namespace Restauracja2WForm
 {
-    class menuButton : normalButton
+    class orderButton : normalButton
     {
-        private Product product;
-        private string id = null;
-        private string name = null;
-        private string price = null;
-        private List<string> ingredients = null;
-        private string typeOfButton = null;
-        private Color color = new Color();
+        private Order order;
+        private string typeOfOrder = null;
+        private string name;
+        private Color color;
+        private string time;
+        
 
         //konstruktory
-        public menuButton(Product product)
+        public orderButton(Order order)
         {
 
             this.Width = 80;
             this.Height = 80;
+            this.order = order;
+            this.typeOfOrder = order.getTypeOfOrder;
+            if (this.typeOfOrder == "LOKAL")
+            {
+                this.color = Color.LightYellow;
+            } else if (this.typeOfOrder == "DOWOZ")
+            {
+                this.color = Color.LightGreen;
+            } else if (this.typeOfOrder == "WYNOS")
+            {
+                this.color = Color.LightBlue;
+            }
 
-            this.color = Color.FromName(product.getColor);
+            if (this.typeOfOrder == "DOWOZ")
+            {
+                this.name = order.getDelivery.getStreet + " " + order.getDelivery.getStreetNumber + " / " + order.getDelivery.getFlatNumber;
+            }
+            else this.name = order.getTypeOfOrder;
 
-            this.id = Convert.ToString(product.getId);
+            this.time = DateTime.Now.TimeOfDay.Hours.ToString()+":"+ DateTime.Now.TimeOfDay.Minutes.ToString();
 
-            this.name = product.getName.ToUpper();
-
-            this.price = Convert.ToString(product.getPrice);
-
-            this.ingredients = product.getIngredients;
-
-            this.typeOfButton = product.getCategory;
-            this.product = product;
-
-        }
-
-        public menuButton(string kategoria) : base()
-        {
-            this.Width = 80;
-            this.Height = 80;
-            //this.BackColor = Color.FromName(kolor);
-
-            this.name = kategoria;
-            this.color = Color.LightYellow;
-            this.typeOfButton= "KATEGORIA";
         }
 
         //metody get, set
-        public string getId
-        {
-            get { return id; }
-            set { id = value; Invalidate(); }
-        }
 
         public string getName
         {
@@ -64,28 +54,21 @@ namespace Restauracja2WForm
             set { name = value; Invalidate(); }
         }
 
-        public string getPrice
+        public string getTypeOfOrder
         {
-            get { return price; }
-            set { price = value; Invalidate(); }
+            get { return typeOfOrder; }
+
         }
 
-        public string getTypeOfButton
+        public string getTime
         {
-            get { return typeOfButton; }
-            set { typeOfButton = value; Invalidate(); }
+            get { return time; }
         }
 
-        public List<string> getIngredients
+        public Order getOrder
         {
-            get { return ingredients; }
-            set { ingredients = value; Invalidate(); }
-        }
-
-        public Product getProduct
-        {
-            get { return product; }
-            set {product = value; Invalidate(); }
+            get { return order; }
+            set {order = value; Invalidate(); }
         }
 
         public Color getColor
@@ -112,23 +95,24 @@ namespace Restauracja2WForm
             g.FillRectangle(Brushes.Black, rectBackground);
             g.FillRectangle(new SolidBrush(color), rectBackgroundUp);
             g.FillRectangle(new SolidBrush(color), rectBackgroundDown);
-            flags =
+     /*       flags =
                 TextFormatFlags.Left |
                 TextFormatFlags.VerticalCenter;
             TextRenderer.DrawText(g, id, new Font("Arial", 9), rectId, Color.Black, flags);
+            */
 
             flags =
                 TextFormatFlags.HorizontalCenter |
                 TextFormatFlags.VerticalCenter |
                 TextFormatFlags.WordBreak;
             TextRenderer.DrawText(g, name, new Font("Arial", 7), rectName, Color.Black, flags);
-            if (price != null){
+
                 flags =
-                TextFormatFlags.Right |
+                TextFormatFlags.Left |
                 TextFormatFlags.VerticalCenter;
-                TextRenderer.DrawText(g, price+" PLN", new Font("Arial", 7, FontStyle.Italic), rectCena, Color.Black, flags);
+                TextRenderer.DrawText(g, time, new Font("Arial", 7, FontStyle.Italic), rectCena, Color.Black, flags);
             }
         }
             
     }
-}
+

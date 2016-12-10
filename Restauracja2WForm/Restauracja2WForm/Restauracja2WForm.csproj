@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="allIngredients.cs" />
+    <Compile Include="Ingredients.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="ChangeIngredient.cs">
       <SubType>Form</SubType>
@@ -67,6 +67,9 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="orderButton.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="menuButton.cs">
       <SubType>Component</SubType>

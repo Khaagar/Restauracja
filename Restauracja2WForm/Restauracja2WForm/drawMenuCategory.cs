@@ -73,13 +73,15 @@ namespace Restauracja2WForm
         {
             this.panelMenu = panel;
             this.order = order;
-            panel.Controls.Clear();
+            panel.Controls.OfType<menuButton>().Where(i => i.Tag == "PRODUCT").ToList().ForEach(i => panel.Controls.Remove(i));
+            
             Button endOfTheOrder = new normalButton();
             Point position = new Point(5, 0);
             this.getListOfMenuButtons();
             foreach (menuButton button in buttons)
             {
                 button.Location = position;
+                button.Tag = "CATEGORY";
                 panel.Controls.Add(button);
                 position.X += 85;
                 if (position.X > 515)
@@ -89,32 +91,27 @@ namespace Restauracja2WForm
                 }
 
             }
-            position.X = 0;
-            position.Y = 520;
-            endOfTheOrder.Text = "KONIEC EDYCJI ZAMÓWIENIA";
-            endOfTheOrder.Location = position;
-            endOfTheOrder.Click += EndOfTheOrder_Click;
-            panel.Controls.Add(endOfTheOrder);
-        }
-
-        private void EndOfTheOrder_Click(object sender, EventArgs e)
-        {
             
         }
+
         #endregion
 
         #region DODAWANIE PRZYCISKÓW ZAWARTOŚCI KATEGORII DO PANELU
         public void addCategoryContentToPanel(Panel panel)
         {
             this.panelMenu = panel;
-            panel.Controls.Clear();
-            Button backToCategory = new normalButton();
+            
+            panel.Controls.OfType<menuButton>().Where(i => i.Tag == "CATEGORY").ToList().ForEach(i => panel.Controls.Remove(i));
+
+
+            menuButton backToCategory = new menuButton("COFNIJ DO WYBORU KATEGORII");
             Image back = Image.FromFile(@"../../back_image.png");
             Point position = new Point(5, 0);
             this.getListOfMenuContentButtons();
             foreach (menuButton button in buttons)
             {
                 button.Location = position;
+                button.Tag = "PRODUCT";
                 panel.Controls.Add(button);
                 position.X += 85;
                 if (position.X > 515)
@@ -127,6 +124,7 @@ namespace Restauracja2WForm
             position.Y = 520;
             backToCategory.Image = back;
             backToCategory.Location = position;
+            backToCategory.Tag = "PRODUCT";
             backToCategory.Click += BackToCategory_Click;
             panel.Controls.Add(backToCategory);
         }
@@ -135,7 +133,8 @@ namespace Restauracja2WForm
         #region ZDARZENIE CLICK DLA PRZYCISKU COFANIA DO WYBORU KATEGORII
         private void BackToCategory_Click(object sender, EventArgs e)
         {
-            this.panelMenu.Controls.Clear();
+            menuButton b = sender as menuButton;
+            this.panelMenu.Controls.Remove(b);
             addCategoriesToPanel(this.panelMenu, this.order);
         }
         #endregion
@@ -171,6 +170,7 @@ namespace Restauracja2WForm
             orderTree.Height = 540;
             position.Y += orderTree.Height + 5;
             totalAmountOfOrder.Location = position;
+            totalAmountOfOrder.ForeColor = Color.White;
             totalAmountOfOrder.Text = "SUMA: " + Convert.ToString(order.getCostOfOrder)+" PLN";
             totalAmountOfOrder.Name = "totalAmountOfOrder";
             panel.Controls.Add(deleteButton);
@@ -188,6 +188,8 @@ namespace Restauracja2WForm
             try
             {
                 Product selectedProduct = order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text));
+                order.getCostOfOrder -= Convert.ToDouble(order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text)).getPrice);
+                order.getListOfOrderedProducts.Remove(order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text)));
                 if (selectedProduct.getIngredients.Count == 0)
                 {
                     throw new ArgumentException();
@@ -195,9 +197,12 @@ namespace Restauracja2WForm
                 ChangeIngredient Change = new ChangeIngredient(selectedProduct);
                 Change.ShowDialog();
 
-                order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text)).getIngredients = Change.getInput.getIngredients;
+                
+                order.getCostOfOrder += Convert.ToDouble(Change.getInput.getPrice);
+                order.getListOfOrderedProducts.Add(Change.getInput);
                 orderTree.SelectedNode.Remove();
                 updateTreeView(Change.getInput.getName.ToUpper(), Change.getInput.getPrice, Change.getInput.getIngredients);
+                this.panelOrder.Controls.Find("totalAmountOfOrder", false).Last().Text = "SUMA: " + Convert.ToString(order.getCostOfOrder) + " PLN";
             }
             catch (NullReferenceException)
             {

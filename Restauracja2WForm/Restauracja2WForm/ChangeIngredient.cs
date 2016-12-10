@@ -14,10 +14,11 @@ namespace Restauracja2WForm
     {
         private Product input;
         private bool status;
-        private List<menuButton> buttons = new List<menuButton>();
+        private List<orderButton> buttons = new List<orderButton>();
         private ingredientsFileReader fs = new ingredientsFileReader();
         private List<string> ingredients;
-
+        private int deletedCount = 0;
+        private int addedCount = 0;
         public ChangeIngredient(Product input)
         {
             this.input = input;
@@ -31,6 +32,7 @@ namespace Restauracja2WForm
 
         private void ChangeIngredient_Load(object sender, EventArgs e)
         {
+            
             #region DODAWANIE PRZYCISKÓW AKTUALNYCH SKŁADNIKÓW PIZZY
             Point position = new Point(0, 0);
             foreach (string item in input.getIngredients)
@@ -42,10 +44,14 @@ namespace Restauracja2WForm
                     panel1.Controls.Add(button);
 
             }
-           
+
             #endregion
 
             #region DODAWANIE PRZYCISKÓW WSZYSTKICH DOSTEPNYCH SKŁADNIKÓW PIZZY
+            int size = 0;
+            string price = "" ;
+            if (input.getName.Contains("32")) size = 32;
+            else if (input.getName.Contains("43")) size = 43;
             position = new Point(0, 0);
             Color color = Color.White;
             ingredients = fs.getFileContent();
@@ -55,11 +61,19 @@ namespace Restauracja2WForm
                 {
                     string tmpStr = item.Remove(0, 6);
                     color = Color.FromName(tmpStr);
+                } else if(item.Contains("32") || item.Contains("43"))
+                {
+                    if (item.Contains(Convert.ToString(size)))
+                    {
+                        string tmpStr = item.Remove(0, 3);
+                        price = tmpStr;
+                    }
                 }
                 else
                 {
                     menuButton button = new menuButton(item);
                     button.getColor = color;
+                    button.getPrice = price;
                     button.Location = position;
                     button.Click += OutputButton_Selected;
                     position.X += 85;
@@ -90,6 +104,7 @@ namespace Restauracja2WForm
             else
             {
                 input.getIngredients.Add(b.getName);
+                
                 b.getColor = Color.LightYellow;
             }
 
@@ -98,18 +113,20 @@ namespace Restauracja2WForm
         private void OutputButton_Selected(object sender, EventArgs e)
         {
 
-            
+
             menuButton b = sender as menuButton;
             if (b.getColor != Color.Green)
             {
                 
                 input.getIngredients.Add(b.getName);
+                input.getPrice = Convert.ToString(Convert.ToDouble(input.getPrice)+ Convert.ToDouble(b.getPrice));
                 b.getColor = Color.Green;
             }
             else
             {
 
                 input.getIngredients.Remove(b.getName);
+                input.getPrice = Convert.ToString(Convert.ToDouble(input.getPrice) - Convert.ToDouble(b.getPrice));
                 b.getColor = Color.LightYellow;
             }
 
