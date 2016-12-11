@@ -157,5 +157,32 @@ namespace Restauracja2WForm
             menu.addTreeViewToPanel(panelOrderTree);
             clickedOrder = b.getId;
         }
+
+        private void DeleteOrder_Click(object sender, EventArgs e)
+        {
+            panelOfOrderForms.Visible = true;
+            panelOfMenuContent.SendToBack();
+            panelOfMenuContent.Controls.OfType<menuButton>().Where(i => i.Tag == "CATEGORY").ToList().ForEach(i => panelOfMenuContent.Controls.Remove(i));
+            panelOfMenuContent.Controls.OfType<menuButton>().Where(i => i.Tag == "PRODUCT").ToList().ForEach(i => panelOfMenuContent.Controls.Remove(i));
+
+            panelDeliveryInfo.Visible = false;
+            panelOrderTree.Visible = false;
+            panelOrderTree.Controls.Clear();
+            panelAllOrders.Visible = true;
+            panelAllOrders.BringToFront();
+            panelAllOrders.Controls.RemoveAt(clickedOrder);
+            listOrder.RemoveAt(clickedOrder);
+            Point position = new Point(0, 0);
+            foreach (orderButton button in panelAllOrders.Controls)
+            {
+                if (button.getId > clickedOrder)
+                {
+                    position.X = button.Location.X - 85;
+
+                    button.Location = position;
+                    button.getId--;
+                }
+            }
+        }
     }
 }

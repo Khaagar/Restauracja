@@ -93,8 +93,8 @@ namespace Restauracja2WForm
             Rectangle rectBackgroundUp = new Rectangle(3, 3, 74, 40);
             Rectangle rectBackgroundDown = new Rectangle(3, 35, 74, 42);
             Rectangle rectId = new Rectangle(5, 5, 74, 15);
-            Rectangle rectName = new Rectangle(5, 20, 74, 40);
-            Rectangle rectTime = new Rectangle(5, 60, 74, 15);
+            Rectangle rectName = new Rectangle(5, 12, 74, 40);
+            Rectangle rectTime = new Rectangle(5, 52, 74, 15);
             Rectangle rectCost = new Rectangle(5, 60, 74, 15);
             Graphics g = e.Graphics;
 
@@ -105,7 +105,7 @@ namespace Restauracja2WForm
             flags =
                 TextFormatFlags.Left |
                 TextFormatFlags.VerticalCenter;
-            TextRenderer.DrawText(g, Convert.ToString(id), new Font("Arial", 9), rectId, Color.Black, flags);
+            TextRenderer.DrawText(g, Convert.ToString(id), new Font("Arial", 7), rectId, Color.Black, flags);
             
 
             flags =

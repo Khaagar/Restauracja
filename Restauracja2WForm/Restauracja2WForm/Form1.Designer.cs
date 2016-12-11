@@ -30,20 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelOfOrderForms = new System.Windows.Forms.Panel();
-            this.panelOfMenuContent = new System.Windows.Forms.Panel();
-            this.panelAllOrders = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panelDeliveryInfo = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelOrderTree = new System.Windows.Forms.Panel();
-            this.normalButton2 = new Restauracja2WForm.normalButton();
-            this.normalButton1 = new Restauracja2WForm.normalButton();
             this.normalButton4 = new Restauracja2WForm.normalButton();
             this.dowozButton = new Restauracja2WForm.normalButton();
             this.wynosButton = new Restauracja2WForm.normalButton();
             this.lokalButton = new Restauracja2WForm.normalButton();
+            this.panelOfMenuContent = new System.Windows.Forms.Panel();
+            this.normalButton2 = new Restauracja2WForm.normalButton();
+            this.normalButton3 = new Restauracja2WForm.normalButton();
+            this.panelAllOrders = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panelDeliveryInfo = new System.Windows.Forms.Panel();
+            this.normalButton1 = new Restauracja2WForm.normalButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelOrderTree = new System.Windows.Forms.Panel();
             this.panelOfOrderForms.SuspendLayout();
             this.panelOfMenuContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -62,16 +63,76 @@
             this.panelOfOrderForms.Size = new System.Drawing.Size(200, 600);
             this.panelOfOrderForms.TabIndex = 0;
             // 
+            // normalButton4
+            // 
+            this.normalButton4.Location = new System.Drawing.Point(3, 517);
+            this.normalButton4.Name = "normalButton4";
+            this.normalButton4.Size = new System.Drawing.Size(80, 80);
+            this.normalButton4.TabIndex = 3;
+            this.normalButton4.Text = "KONIEC PRACY";
+            this.normalButton4.UseVisualStyleBackColor = true;
+            this.normalButton4.Click += new System.EventHandler(this.normalButton4_Click);
+            // 
+            // dowozButton
+            // 
+            this.dowozButton.Location = new System.Drawing.Point(3, 172);
+            this.dowozButton.Name = "dowozButton";
+            this.dowozButton.Size = new System.Drawing.Size(80, 80);
+            this.dowozButton.TabIndex = 2;
+            this.dowozButton.Text = "DOWOZ";
+            this.dowozButton.UseVisualStyleBackColor = true;
+            this.dowozButton.Click += new System.EventHandler(this.dowozButton_Click);
+            // 
+            // wynosButton
+            // 
+            this.wynosButton.Location = new System.Drawing.Point(3, 86);
+            this.wynosButton.Name = "wynosButton";
+            this.wynosButton.Size = new System.Drawing.Size(80, 80);
+            this.wynosButton.TabIndex = 1;
+            this.wynosButton.Text = "WYNOS";
+            this.wynosButton.UseVisualStyleBackColor = true;
+            // 
+            // lokalButton
+            // 
+            this.lokalButton.Location = new System.Drawing.Point(3, 0);
+            this.lokalButton.Name = "lokalButton";
+            this.lokalButton.Size = new System.Drawing.Size(80, 80);
+            this.lokalButton.TabIndex = 0;
+            this.lokalButton.Text = "LOKAL";
+            this.lokalButton.UseVisualStyleBackColor = true;
+            this.lokalButton.Click += new System.EventHandler(this.lokalButton_Click);
+            // 
             // panelOfMenuContent
             // 
             this.panelOfMenuContent.BackColor = System.Drawing.Color.Transparent;
             this.panelOfMenuContent.Controls.Add(this.normalButton2);
+            this.panelOfMenuContent.Controls.Add(this.normalButton3);
             this.panelOfMenuContent.Controls.Add(this.panelAllOrders);
             this.panelOfMenuContent.Location = new System.Drawing.Point(218, 99);
             this.panelOfMenuContent.Name = "panelOfMenuContent";
             this.panelOfMenuContent.Size = new System.Drawing.Size(600, 600);
             this.panelOfMenuContent.TabIndex = 1;
             this.panelOfMenuContent.Visible = false;
+            // 
+            // normalButton2
+            // 
+            this.normalButton2.Location = new System.Drawing.Point(520, 520);
+            this.normalButton2.Name = "normalButton2";
+            this.normalButton2.Size = new System.Drawing.Size(80, 80);
+            this.normalButton2.TabIndex = 0;
+            this.normalButton2.Text = "KONIEC EDYCJI ZAMÓWIENIA";
+            this.normalButton2.UseVisualStyleBackColor = true;
+            this.normalButton2.Click += new System.EventHandler(this.EndOfTheOrder_Click);
+            // 
+            // normalButton3
+            // 
+            this.normalButton3.Location = new System.Drawing.Point(434, 520);
+            this.normalButton3.Name = "normalButton3";
+            this.normalButton3.Size = new System.Drawing.Size(80, 80);
+            this.normalButton3.TabIndex = 2;
+            this.normalButton3.Text = "SKASUJ ZAMOWIENIE";
+            this.normalButton3.UseVisualStyleBackColor = true;
+            this.normalButton3.Click += new System.EventHandler(this.DeleteOrder_Click);
             // 
             // panelAllOrders
             // 
@@ -100,6 +161,16 @@
             this.panelDeliveryInfo.Size = new System.Drawing.Size(600, 80);
             this.panelDeliveryInfo.TabIndex = 2;
             this.panelDeliveryInfo.Visible = false;
+            // 
+            // normalButton1
+            // 
+            this.normalButton1.Location = new System.Drawing.Point(517, 0);
+            this.normalButton1.Name = "normalButton1";
+            this.normalButton1.Size = new System.Drawing.Size(80, 80);
+            this.normalButton1.TabIndex = 3;
+            this.normalButton1.Text = "EDYTUJ DANE KLIENTA";
+            this.normalButton1.UseVisualStyleBackColor = true;
+            this.normalButton1.Click += new System.EventHandler(this.normalButton1_Click_1);
             // 
             // label3
             // 
@@ -140,65 +211,6 @@
             this.panelOrderTree.Name = "panelOrderTree";
             this.panelOrderTree.Size = new System.Drawing.Size(180, 600);
             this.panelOrderTree.TabIndex = 3;
-            // 
-            // normalButton2
-            // 
-            this.normalButton2.Location = new System.Drawing.Point(520, 520);
-            this.normalButton2.Name = "normalButton2";
-            this.normalButton2.Size = new System.Drawing.Size(80, 80);
-            this.normalButton2.TabIndex = 0;
-            this.normalButton2.Text = "KONIEC EDYCJI ZAMÓWIENIA";
-            this.normalButton2.UseVisualStyleBackColor = true;
-            this.normalButton2.Click += new System.EventHandler(this.EndOfTheOrder_Click);
-            // 
-            // normalButton1
-            // 
-            this.normalButton1.Location = new System.Drawing.Point(517, 0);
-            this.normalButton1.Name = "normalButton1";
-            this.normalButton1.Size = new System.Drawing.Size(80, 80);
-            this.normalButton1.TabIndex = 3;
-            this.normalButton1.Text = "EDYTUJ DANE KLIENTA";
-            this.normalButton1.UseVisualStyleBackColor = true;
-            this.normalButton1.Click += new System.EventHandler(this.normalButton1_Click_1);
-            // 
-            // normalButton4
-            // 
-            this.normalButton4.Location = new System.Drawing.Point(3, 517);
-            this.normalButton4.Name = "normalButton4";
-            this.normalButton4.Size = new System.Drawing.Size(80, 80);
-            this.normalButton4.TabIndex = 3;
-            this.normalButton4.Text = "KONIEC PRACY";
-            this.normalButton4.UseVisualStyleBackColor = true;
-            this.normalButton4.Click += new System.EventHandler(this.normalButton4_Click);
-            // 
-            // dowozButton
-            // 
-            this.dowozButton.Location = new System.Drawing.Point(3, 172);
-            this.dowozButton.Name = "dowozButton";
-            this.dowozButton.Size = new System.Drawing.Size(80, 80);
-            this.dowozButton.TabIndex = 2;
-            this.dowozButton.Text = "DOWOZ";
-            this.dowozButton.UseVisualStyleBackColor = true;
-            this.dowozButton.Click += new System.EventHandler(this.dowozButton_Click);
-            // 
-            // wynosButton
-            // 
-            this.wynosButton.Location = new System.Drawing.Point(3, 86);
-            this.wynosButton.Name = "wynosButton";
-            this.wynosButton.Size = new System.Drawing.Size(80, 80);
-            this.wynosButton.TabIndex = 1;
-            this.wynosButton.Text = "WYNOS";
-            this.wynosButton.UseVisualStyleBackColor = true;
-            // 
-            // lokalButton
-            // 
-            this.lokalButton.Location = new System.Drawing.Point(3, 0);
-            this.lokalButton.Name = "lokalButton";
-            this.lokalButton.Size = new System.Drawing.Size(80, 80);
-            this.lokalButton.TabIndex = 0;
-            this.lokalButton.Text = "LOKAL";
-            this.lokalButton.UseVisualStyleBackColor = true;
-            this.lokalButton.Click += new System.EventHandler(this.lokalButton_Click);
             // 
             // Form1
             // 
@@ -245,6 +257,7 @@
         private normalButton normalButton1;
         private normalButton normalButton2;
         private System.Windows.Forms.Panel panelAllOrders;
+        private normalButton normalButton3;
     }
 }
 
