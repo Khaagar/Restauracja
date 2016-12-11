@@ -11,12 +11,19 @@ namespace Restauracja2WForm
     class drawMenuCategory
     {
         private List<menuButton> buttons = new List<menuButton>();
-        private Order order = new Order();
+        private Order order;
         private List<string> menuCategories = new menuCategory().getListOfCategories();
         private string clickedButton;
         private Panel panelMenu = new Panel();
         private Panel panelOrder = new Panel();
         private TreeView orderTree = new TreeView();
+
+        public drawMenuCategory(Order order)
+        {
+            
+            this.order = order;
+    }
+        
 
         #region TWORZENIE LISTY PRZYCISKÓW KATEGORII
         public List<menuButton> getListOfMenuButtons()
@@ -60,22 +67,19 @@ namespace Restauracja2WForm
         {
 
             menuButton b = sender as menuButton;
-            this.order.addNewProduct(b.getProduct);
+            order.addNewProduct(b.getProduct);
             this.panelOrder.Controls.Find("totalAmountOfOrder", false).Last().Text= "SUMA: " + Convert.ToString(order.getCostOfOrder)+" PLN";
             updateTreeView(b.getName,b.getPrice, b.getIngredients);
-            addCategoriesToPanel(this.panelMenu, this.order);
+            addCategoriesToPanel(this.panelMenu);
 
         }
         #endregion
 
         #region DODAWANIE PRZYCISKÓW KATEGORII DO PANELU
-        public void addCategoriesToPanel(Panel panel, Order order)
+        public void addCategoriesToPanel(Panel panel)
         {
             this.panelMenu = panel;
-            this.order = order;
             panel.Controls.OfType<menuButton>().Where(i => i.Tag == "PRODUCT").ToList().ForEach(i => panel.Controls.Remove(i));
-            
-            Button endOfTheOrder = new normalButton();
             Point position = new Point(5, 0);
             this.getListOfMenuButtons();
             foreach (menuButton button in buttons)
@@ -135,7 +139,7 @@ namespace Restauracja2WForm
         {
             menuButton b = sender as menuButton;
             this.panelMenu.Controls.Remove(b);
-            addCategoriesToPanel(this.panelMenu, this.order);
+            addCategoriesToPanel(this.panelMenu);
         }
         #endregion
 
@@ -245,5 +249,22 @@ namespace Restauracja2WForm
             }
             
         }
+
+        public void updateTreeViewForExistingOrder(Order order)
+        {
+            foreach(Product product in order.getListOfOrderedProducts)
+            {
+                TreeNode node = orderTree.Nodes.Add(product.getName);
+
+                foreach (string ingredient in product.getIngredients)
+                {
+                    node.Nodes.Add(product.getName, ingredient.ToUpper());
+
+                }
+            }
+        }
+
+    
+
     }
 }

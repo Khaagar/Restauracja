@@ -9,11 +9,21 @@ namespace Restauracja2WForm
 {
     public class Order
     {
-        private string typeOfOrder = null;
-        private DeliveryInfo delivery = null;
-        private List<Product> orderedProducts = new List<Product>();
-        private double cost=0;
-        private bool isRealized=false;
+        private string typeOfOrder;
+        private DeliveryInfo delivery;
+        private List<Product> orderedProducts;
+        private double cost;
+        private bool isRealized;
+        private bool toEdit = false;
+
+        public Order()
+        {
+            typeOfOrder = null;
+            delivery = null;
+            orderedProducts = new List<Product>();
+            cost = 0;
+            isRealized = false;
+    }
 
         public void addNewProduct(Product produkt)
         {
@@ -32,6 +42,11 @@ namespace Restauracja2WForm
             
         }
 
+        public bool getToEdit
+        {
+            get { return toEdit; }
+            set { toEdit = value; }
+        }
 
         public DeliveryInfo getDelivery
         {

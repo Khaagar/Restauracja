@@ -31,19 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelOfOrderForms = new System.Windows.Forms.Panel();
             this.panelOfMenuContent = new System.Windows.Forms.Panel();
+            this.panelAllOrders = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelDeliveryInfo = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelOrderTree = new System.Windows.Forms.Panel();
-            this.panelAllOrders = new System.Windows.Forms.Panel();
+            this.normalButton2 = new Restauracja2WForm.normalButton();
             this.normalButton1 = new Restauracja2WForm.normalButton();
             this.normalButton4 = new Restauracja2WForm.normalButton();
             this.dowozButton = new Restauracja2WForm.normalButton();
             this.wynosButton = new Restauracja2WForm.normalButton();
             this.lokalButton = new Restauracja2WForm.normalButton();
-            this.normalButton2 = new Restauracja2WForm.normalButton();
             this.panelOfOrderForms.SuspendLayout();
             this.panelOfMenuContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -72,6 +72,13 @@
             this.panelOfMenuContent.Size = new System.Drawing.Size(600, 600);
             this.panelOfMenuContent.TabIndex = 1;
             this.panelOfMenuContent.Visible = false;
+            // 
+            // panelAllOrders
+            // 
+            this.panelAllOrders.Location = new System.Drawing.Point(0, 0);
+            this.panelAllOrders.Name = "panelAllOrders";
+            this.panelAllOrders.Size = new System.Drawing.Size(600, 600);
+            this.panelAllOrders.TabIndex = 1;
             // 
             // pictureBox1
             // 
@@ -134,13 +141,15 @@
             this.panelOrderTree.Size = new System.Drawing.Size(180, 600);
             this.panelOrderTree.TabIndex = 3;
             // 
-            // panelAllOrders
+            // normalButton2
             // 
-            this.panelAllOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelAllOrders.Location = new System.Drawing.Point(0, 0);
-            this.panelAllOrders.Name = "panelAllOrders";
-            this.panelAllOrders.Size = new System.Drawing.Size(600, 600);
-            this.panelAllOrders.TabIndex = 1;
+            this.normalButton2.Location = new System.Drawing.Point(520, 520);
+            this.normalButton2.Name = "normalButton2";
+            this.normalButton2.Size = new System.Drawing.Size(80, 80);
+            this.normalButton2.TabIndex = 0;
+            this.normalButton2.Text = "KONIEC EDYCJI ZAMÓWIENIA";
+            this.normalButton2.UseVisualStyleBackColor = true;
+            this.normalButton2.Click += new System.EventHandler(this.EndOfTheOrder_Click);
             // 
             // normalButton1
             // 
@@ -191,27 +200,17 @@
             this.lokalButton.UseVisualStyleBackColor = true;
             this.lokalButton.Click += new System.EventHandler(this.lokalButton_Click);
             // 
-            // normalButton2
-            // 
-            this.normalButton2.Location = new System.Drawing.Point(520, 520);
-            this.normalButton2.Name = "normalButton2";
-            this.normalButton2.Size = new System.Drawing.Size(80, 80);
-            this.normalButton2.TabIndex = 0;
-            this.normalButton2.Text = "KONIEC EDYCJI ZAMÓWIENIA";
-            this.normalButton2.UseVisualStyleBackColor = true;
-            this.normalButton2.Click += new System.EventHandler(this.EndOfTheOrder_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1008, 730);
+            this.Controls.Add(this.panelOfMenuContent);
             this.Controls.Add(this.panelOrderTree);
             this.Controls.Add(this.panelDeliveryInfo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panelOfOrderForms);
-            this.Controls.Add(this.panelOfMenuContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;

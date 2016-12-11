@@ -12,10 +12,10 @@ namespace Restauracja2WForm
 {
     public partial class Form1 : Form
     {
-        private Order newOrder;
-        private drawMenuCategory menu;
+        private List<Order> listOrder = new List<Order>();
         private DeliveryInfo newDeliveryInfo;
         private DeliveryForm newDelivery;
+        private int clickedOrder = 0;
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +24,7 @@ namespace Restauracja2WForm
 
         private void dowozButton_Click(object sender, EventArgs e)
         {
+
             List<Label> labelList = new List<Label>();
             newDelivery = new DeliveryForm();
             newDelivery.ShowDialog();
@@ -34,12 +35,12 @@ namespace Restauracja2WForm
                 panelOfMenuContent.Visible = true;
                 panelDeliveryInfo.Visible = true;
                 panelOrderTree.Visible = true;
-                newOrder = null;
-                newOrder = new Order();
-                newOrder.getTypeOfOrder = "DOWOZ";
-                newOrder.getDelivery = newDeliveryInfo;
-                menu = new drawMenuCategory();
-                menu.addCategoriesToPanel(panelOfMenuContent, newOrder);
+                Order order = new Order();
+                listOrder.Add(order);
+                listOrder.Last().getTypeOfOrder = "DOWOZ";
+                listOrder.Last().getDelivery = newDeliveryInfo;
+                drawMenuCategory menu = new drawMenuCategory(listOrder.Last());
+                menu.addCategoriesToPanel(panelOfMenuContent);
                 menu.addTreeViewToPanel(panelOrderTree);
                 foreach (Label label in panelDeliveryInfo.Controls.OfType<Label>())
                 {
@@ -59,11 +60,11 @@ namespace Restauracja2WForm
             panelAllOrders.Visible = false;
             panelOfMenuContent.Visible = true;
             panelOrderTree.Visible = true;
-            newOrder = null;
-            newOrder = new Order();
-            newOrder.getTypeOfOrder = "LOKAL";
-            menu = new drawMenuCategory();
-            menu.addCategoriesToPanel(panelOfMenuContent, newOrder);
+            Order order = new Order();
+            listOrder.Add(order);
+            listOrder.Last().getTypeOfOrder = "LOKAL";
+            drawMenuCategory menu = new drawMenuCategory(listOrder.Last());
+            menu.addCategoriesToPanel(panelOfMenuContent);
             menu.addTreeViewToPanel(panelOrderTree);
 
         }
@@ -99,26 +100,62 @@ namespace Restauracja2WForm
 
         private void EndOfTheOrder_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("KURWA JESTEM");
+            
             panelOfOrderForms.Visible = true;
             panelOfMenuContent.SendToBack();
-            
+            panelOfMenuContent.Controls.OfType<menuButton>().Where(i => i.Tag == "CATEGORY").ToList().ForEach(i => panelOfMenuContent.Controls.Remove(i));
+            panelOfMenuContent.Controls.OfType<menuButton>().Where(i => i.Tag == "PRODUCT").ToList().ForEach(i => panelOfMenuContent.Controls.Remove(i));
+
             panelDeliveryInfo.Visible = false;
             panelOrderTree.Visible = false;
+            panelOrderTree.Controls.Clear();
             panelAllOrders.Visible = true;
             panelAllOrders.BringToFront();
             Point position = new Point(0, 0);
-            
-            orderButton button = new orderButton(newOrder);
-
-            position.X = panelAllOrders.Controls.Count * 85;
-            if (position.X > 580)
+            if (listOrder.Last().getToEdit == false)
             {
-                position.Y = (panelAllOrders.Controls.Count / 10) * 85;
+                orderButton button = new orderButton(listOrder.Last());
+                button.getId = listOrder.IndexOf(listOrder.Last());
+                position.X = panelAllOrders.Controls.Count * 85;
+                if (position.X > 580)
+                {
+                    position.Y = (panelAllOrders.Controls.Count / 10) * 85;
+                }
+                button.Location = position;
+                button.Click += OrderButton_Click;
+                panelAllOrders.Controls.Add(button);
+                listOrder.Last().getToEdit = true;
+                
             }
-            button.Location = position;
-            panelAllOrders.Controls.Add(button);
+            else
+            {
+                orderButton button = new orderButton(listOrder.ElementAt(clickedOrder));
+                position.X = panelAllOrders.Controls[clickedOrder].Location.X;
+                position.Y = panelAllOrders.Controls[clickedOrder].Location.Y;
+                button.Location = position;
+                button.getId = clickedOrder;
+                button.Click += OrderButton_Click;
+                panelAllOrders.Controls.RemoveAt(clickedOrder);
+                panelAllOrders.Controls.Add(button);
+                panelAllOrders.Controls.SetChildIndex(button, clickedOrder);
+            }
+
             
+
+        }
+
+        private void OrderButton_Click(object sender, EventArgs e)
+        {
+            orderButton b = sender as orderButton;
+            panelOfOrderForms.Visible = false;
+            panelAllOrders.Visible = false;
+            panelOfMenuContent.Visible = true;
+            panelOrderTree.Visible = true;
+            drawMenuCategory menu = new drawMenuCategory(b.getOrder);
+            menu.updateTreeViewForExistingOrder(b.getOrder);
+            menu.addCategoriesToPanel(panelOfMenuContent);
+            menu.addTreeViewToPanel(panelOrderTree);
+            clickedOrder = b.getId;
         }
     }
 }

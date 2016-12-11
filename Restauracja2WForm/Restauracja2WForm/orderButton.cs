@@ -15,6 +15,7 @@ namespace Restauracja2WForm
         private string name;
         private Color color;
         private string time;
+        private int id = 0;
         
 
         //konstruktory
@@ -48,6 +49,11 @@ namespace Restauracja2WForm
 
         //metody get, set
 
+        public int getId
+        {
+            get { return id; }
+            set { id = value; }
+        }
         public string getName
         {
             get { return name; }
@@ -88,18 +94,19 @@ namespace Restauracja2WForm
             Rectangle rectBackgroundDown = new Rectangle(3, 35, 74, 42);
             Rectangle rectId = new Rectangle(5, 5, 74, 15);
             Rectangle rectName = new Rectangle(5, 20, 74, 40);
-            Rectangle rectCena = new Rectangle(5, 60, 74, 15);
+            Rectangle rectTime = new Rectangle(5, 60, 74, 15);
+            Rectangle rectCost = new Rectangle(5, 60, 74, 15);
             Graphics g = e.Graphics;
 
             
             g.FillRectangle(Brushes.Black, rectBackground);
             g.FillRectangle(new SolidBrush(color), rectBackgroundUp);
             g.FillRectangle(new SolidBrush(color), rectBackgroundDown);
-     /*       flags =
+            flags =
                 TextFormatFlags.Left |
                 TextFormatFlags.VerticalCenter;
-            TextRenderer.DrawText(g, id, new Font("Arial", 9), rectId, Color.Black, flags);
-            */
+            TextRenderer.DrawText(g, Convert.ToString(id), new Font("Arial", 9), rectId, Color.Black, flags);
+            
 
             flags =
                 TextFormatFlags.HorizontalCenter |
@@ -107,11 +114,16 @@ namespace Restauracja2WForm
                 TextFormatFlags.WordBreak;
             TextRenderer.DrawText(g, name, new Font("Arial", 7), rectName, Color.Black, flags);
 
-                flags =
+            flags =
                 TextFormatFlags.Left |
                 TextFormatFlags.VerticalCenter;
-                TextRenderer.DrawText(g, time, new Font("Arial", 7, FontStyle.Italic), rectCena, Color.Black, flags);
-            }
+            TextRenderer.DrawText(g, time, new Font("Arial", 7, FontStyle.Italic), rectTime, Color.Black, flags);
+
+            flags =
+                TextFormatFlags.Right|
+                TextFormatFlags.VerticalCenter;
+            TextRenderer.DrawText(g, Convert.ToString(order.getCostOfOrder)+" PLN", new Font("Arial", 7, FontStyle.Bold), rectCost, Color.Black, flags);
+        }
         }
             
     }
