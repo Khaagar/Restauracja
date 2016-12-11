@@ -31,3 +31,4 @@ C:\Users\RADEK\Documents\Visual Studio 2015\Projects\Restauracja2WForm\Restaurac
 C:\Users\RADEK\Documents\Visual Studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.Form1.resources
 C:\Users\RADEK\Documents\Visual Studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.Properties.Resources.resources
 C:\Users\RADEK\Documents\Visual Studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.csproj.GenerateResource.Cache
+C:\Users\RADEK\Documents\Visual Studio 2015\Projects\Restauracja2WForm\Restauracja2WForm\obj\Debug\Restauracja2WForm.FinalizeOrder.resources

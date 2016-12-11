@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FinalizeOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinalizeOrder.Designer.cs">
+      <DependentUpon>FinalizeOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ingredients.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="ChangeIngredient.cs">
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DeliveryForm.resx">
       <DependentUpon>DeliveryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinalizeOrder.resx">
+      <DependentUpon>FinalizeOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

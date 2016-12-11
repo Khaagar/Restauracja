@@ -15,6 +15,7 @@ namespace Restauracja2WForm
         private List<Order> listOrder = new List<Order>();
         private DeliveryInfo newDeliveryInfo;
         private DeliveryForm newDelivery;
+        private FinalizeOrder newFinalizeOrder;
         private int clickedOrder = 0;
         public Form1()
         {
@@ -160,29 +161,40 @@ namespace Restauracja2WForm
 
         private void DeleteOrder_Click(object sender, EventArgs e)
         {
-            panelOfOrderForms.Visible = true;
-            panelOfMenuContent.SendToBack();
-            panelOfMenuContent.Controls.OfType<menuButton>().Where(i => i.Tag == "CATEGORY").ToList().ForEach(i => panelOfMenuContent.Controls.Remove(i));
-            panelOfMenuContent.Controls.OfType<menuButton>().Where(i => i.Tag == "PRODUCT").ToList().ForEach(i => panelOfMenuContent.Controls.Remove(i));
-
-            panelDeliveryInfo.Visible = false;
-            panelOrderTree.Visible = false;
-            panelOrderTree.Controls.Clear();
-            panelAllOrders.Visible = true;
-            panelAllOrders.BringToFront();
-            panelAllOrders.Controls.RemoveAt(clickedOrder);
-            listOrder.RemoveAt(clickedOrder);
-            Point position = new Point(0, 0);
-            foreach (orderButton button in panelAllOrders.Controls)
+            DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz skasować zamówienie?", "UWAGA!", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                if (button.getId > clickedOrder)
-                {
-                    position.X = button.Location.X - 85;
+                panelOfOrderForms.Visible = true;
+                panelOfMenuContent.SendToBack();
+                panelOfMenuContent.Controls.OfType<menuButton>().Where(i => i.Tag == "CATEGORY").ToList().ForEach(i => panelOfMenuContent.Controls.Remove(i));
+                panelOfMenuContent.Controls.OfType<menuButton>().Where(i => i.Tag == "PRODUCT").ToList().ForEach(i => panelOfMenuContent.Controls.Remove(i));
 
-                    button.Location = position;
-                    button.getId--;
+                panelDeliveryInfo.Visible = false;
+                panelOrderTree.Visible = false;
+                panelOrderTree.Controls.Clear();
+                panelAllOrders.Visible = true;
+                panelAllOrders.BringToFront();
+                panelAllOrders.Controls.RemoveAt(clickedOrder);
+                listOrder.RemoveAt(clickedOrder);
+                Point position = new Point(0, 0);
+                foreach (orderButton button in panelAllOrders.Controls)
+                {
+                    if (button.getId > clickedOrder)
+                    {
+                        position.X = button.Location.X - 85;
+                        button.Location = position;
+                        button.getId--;
+                    }
                 }
             }
+            
+            
+        }
+
+        private void normalButton5_Click(object sender, EventArgs e)
+        {
+            newFinalizeOrder = new FinalizeOrder(listOrder.ElementAt(clickedOrder));
+            newFinalizeOrder.ShowDialog();
         }
     }
 }

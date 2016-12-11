@@ -224,6 +224,7 @@ namespace Restauracja2WForm
             {
                 order.getCostOfOrder = order.getCostOfOrder - Convert.ToDouble(order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text)).getPrice);
                 this.panelOrder.Controls.Find("totalAmountOfOrder", false).Last().Text = "SUMA: " + Convert.ToString(order.getCostOfOrder) + " PLN";
+                order.getListOfOrderedProducts.Remove(order.getListOfOrderedProducts.Find(x => x.getName.ToUpper().Contains(orderTree.SelectedNode.Text)));
                 orderTree.SelectedNode.Remove();
                 orderTree.SelectedNode = null;
                 
